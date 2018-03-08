@@ -1,0 +1,23 @@
+{
+  "name": "node-harvest-api",
+  "version": "0.0.1",
+  "description": "Promise bases node library for the Harvest API v2",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --require babel-register"
+  },
+  "keywords": [
+    "node",
+    "harvest",
+    "javascript",
+    "api",
+    "promises"
+  ],
+  "author": "David De Coninck",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-register": "^6.26.0",
+    "mocha": "^5.0.1",
+    "node-rest-client": "^3.1.0"
+  }
+}

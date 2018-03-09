@@ -24,7 +24,7 @@ Node implementation for the Harvest rest API v2 using async/await.
   - [Time Entries](#time-entries)
   - [Projects](#projects)
   - [Project User Assignments](#project-user-assignments)
-  - [Project Task Assignments](#project-tasks-assignments)
+  - [Project Task Assignments](#project-task-assignments)
 - [Pagination](#pagination)
 
 ## Installation

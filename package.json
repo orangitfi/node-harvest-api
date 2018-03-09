@@ -14,16 +14,17 @@
     "promises",
     "async/await"
   ],
-  "repository" :
-  { 
-    "type" : "git", 
-    "url" : "https://github.com/maneuver-agency/node-harvest-api"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/maneuver-agency/node-harvest-api"
   },
   "author": "David De Coninck",
   "license": "MIT",
   "devDependencies": {
     "babel-register": "^6.26.0",
-    "mocha": "^5.0.1",
+    "mocha": "^5.0.1"
+  },
+  "dependencies": {
     "node-rest-client": "^3.1.0"
   }
 }

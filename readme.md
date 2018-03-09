@@ -436,7 +436,7 @@ harvest.projects.pipe(project_id).task_assignments.delete(1)
 
 ## Pagination
 
-You can get a limited set of records when using the `get()` method by passing the 'page' and 'per_page' parameters.
+You can get a limited set of records when using the `get()` method by passing **both** the 'page' and 'per_page' parameters.
 
 ```javascript
 let tasks = await harvest.tasks.get({ page: 1, per_page: 5 })

@@ -1,7 +1,7 @@
 {
   "name": "node-harvest-api",
   "version": "0.0.1",
-  "description": "Promise bases node library for the Harvest API v2",
+  "description": "Node implementation for the Harvest rest API v2 using async/await",
   "main": "index.js",
   "scripts": {
     "test": "mocha --require babel-register"
@@ -11,7 +11,8 @@
     "harvest",
     "javascript",
     "api",
-    "promises"
+    "promises",
+    "async/await"
   ],
   "author": "David De Coninck",
   "license": "MIT",

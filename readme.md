@@ -378,6 +378,8 @@ harvest.time_entries.restart(time_entry_id)
 
 **[API Docs](https://help.getharvest.com/api-v2/timesheets-api/timesheets/time-entries/)**
 
+---
+
 ### Projects
 
 ```javascript

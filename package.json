@@ -1,6 +1,6 @@
 {
   "name": "node-harvest-api",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Node implementation for the Harvest rest API v2 using async/await",
   "main": "index.js",
   "scripts": {

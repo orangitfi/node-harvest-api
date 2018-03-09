@@ -14,6 +14,8 @@ module.exports = class Wrapper {
       this.headers = {}
     }
 
+    this.last_page = 0
+    this.last_per_page = 0
     this.pipe_id = null
     this.pipe_path = ''
     this.rest_client = new Client()
@@ -29,14 +31,22 @@ module.exports = class Wrapper {
 
   async get(args = {}, raw = false) {
 
+    this.last_page = 0
+    this.last_per_page = 0
+
     if (args.limit) {
       args.per_page = Math.min(args.limit, 100)
       args.page = 1
 
+      if (args.limit > 100) {
+        this.last_page = Math.ceil(args.limit / 100)
+        this.last_per_page = args.limit - Math.floor(args.limit / 100) * 100
+      }
+
       delete args.limit
     }
 
-    if (args.page || raw) {
+    if ((args.page && !this.last_page) || raw) {
       let result = await this._make_get_request(this.endpoint, args)
 
       if (raw) return result
@@ -142,6 +152,16 @@ module.exports = class Wrapper {
       args.parameters.page = data.next_page
 
       list = list.concat(data[key])
+
+      if (this.last_page) {
+        if (data.next_page == this.last_page && this.last_per_page) {
+          args.parameters.per_page = this.last_per_page
+        }
+
+        if (data.next_page > this.last_page) {
+          break;
+        }      
+      }
 
     } while (data.next_page)
 

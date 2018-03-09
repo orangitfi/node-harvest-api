@@ -453,6 +453,12 @@ There's a little helper you can use to shorten this:
 let tasks = await harvest.tasks.get({ limit: 5 })
 ```
 
+The 'limit' functionality makes it possible to get more than 100 items.
+
+```javascript
+let tasks = await harvest.tasks.get({ limit: 120 })
+```
+
 ## Full Example
 
 ```javascript

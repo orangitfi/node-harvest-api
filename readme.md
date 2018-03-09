@@ -26,6 +26,7 @@ Node implementation for the Harvest rest API v2 using async/await.
   - [Project User Assignments](#project-user-assignments)
   - [Project Task Assignments](#project-task-assignments)
 - [Pagination](#pagination)
+- [Full Example](#full-example)
 
 ## Installation
 
@@ -448,4 +449,26 @@ There's a little helper you can use to shorten this:
 
 ```javascript
 let tasks = await harvest.tasks.get({ limit: 5 })
+```
+
+## Full Example
+
+```javascript
+const Harvest = require('node-harvest-api')
+
+const account_id = 12345
+const token = 'Your Access Token'
+const app_name = 'Your Application Name'
+
+const harvest = new Harvest(account_id, token, app_name)
+
+async function print_active_users() {
+  let active_users = await harvest.users.get({ is_active: true })
+  
+  for (let user of active_users) {
+    console.log(user.first_name)
+  }
+}
+
+print_active_users()
 ```

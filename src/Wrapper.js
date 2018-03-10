@@ -75,6 +75,9 @@ module.exports = class Wrapper {
   }
 
   addMethod(name, endpoint, method = 'get', fixed_args = {}) {
+    // Skip if method already exists
+    if (typeof this[name] == 'function') return
+
     let params = endpoint.match(/[^{\}]+(?=})/g)
     let func = '_make_' + method + '_request'
 
@@ -100,20 +103,24 @@ module.exports = class Wrapper {
 
     // Create pipe method.
     // Temporary store the given id.
-    this.pipe = function(id) {
-      this.pipe_id = id
-      return this
+    if (typeof this.pipe !== 'function') {
+      this.pipe = function(id) {
+        this.pipe_id = id
+        return this
+      }
     }
 
     // Create getter that creates the path.
-    Object.defineProperty(this, name, {
-      get: () => {
-        wrapper.pipe_path = this.endpoint + '/' + this.pipe_id
-        this.pipe_id = null
+    if (!this.hasOwnProperty(name)) {
+      Object.defineProperty(this, name, {
+        get: () => {
+          wrapper.pipe_path = this.endpoint + '/' + this.pipe_id
+          this.pipe_id = null
 
-        return wrapper
-      }
-    })
+          return wrapper
+        }
+      })
+    }
   }
 
   async _make_get_request(endpoint, args = {}) {

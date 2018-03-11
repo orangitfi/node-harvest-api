@@ -6,6 +6,7 @@ Node implementation for the Harvest rest API v2 using async/await.
 
 - [Installation](#installation)
 - [Initializing](#initializing)
+- [Usage](#usage)
 - [Resources](#resources)
   - [Users](#users)
   - [User Project Assignments](#user-project-assignments)
@@ -48,9 +49,33 @@ const app_name = 'Your Application Name'
 const harvest = new Harvest(account_id, token, app_name)
 ```
 
+## Usage
+
+All methods (see below) are asynchronous and return a promise. You can relove the promise yourself or use 'await'.
+
+```javascript
+let invoices_promise = harvest.invoices.all()
+
+invoices_promise.then(invoices => { 
+  for (let invoice in invoices) {
+    console.log(invoice.id)
+  }
+})
+```
+
+```javascript
+let invoices = await harvest.invoices.all()
+
+for (let invoice in invoices) {
+  console.log(invoice.id)
+}
+```
+
+All arguments are supported. [**Please see the API docs for more info on this.**](https://help.getharvest.com/api-v2/)
+
 ## Resources
 
-All resources are then available on the 'harvest' instance with getters.
+All resources described in the API docs are available using getters.
 
 Almost every resource has the following methods:
 
@@ -58,13 +83,13 @@ Almost every resource has the following methods:
   Will fetch all records. Same as get() without arguments.
 
 - **get(args)**  
-  Fetches records by query arguments. Check out the API docs for the correct arguments.
-  [Check out how to paginate.](#pagination)
+  Fetches records by query arguments. Check out the API docs for the correct arguments.  
+  [Check out how to use pagination.](#pagination)
 
 - **raw(args)**  
   Same as get() but returns the entire response object instead of only the relevant records.
   This will only return the first page of a request. Subsequent pages (if any) are to be
-  retrieved using the 'next_page' property of the response.
+  retrieved using the 'next' or 'next_page' properties of the response.
 
 - **find(id)**  
   Retrieves one record by id.
@@ -79,6 +104,10 @@ Almost every resource has the following methods:
   Removes a record.
 
 See below for examples.
+
+---
+
+### Company
 
 The company resource is a special case. It is a method on its own.
 

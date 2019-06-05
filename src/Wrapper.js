@@ -114,7 +114,7 @@ module.exports = class Wrapper {
     if (!this.hasOwnProperty(name)) {
       Object.defineProperty(this, name, {
         get: () => {
-          wrapper.pipe_path = this.endpoint + '/' + this.pipe_id
+          wrapper.pipe_path = '/' + this.endpoint + '/' + this.pipe_id
           this.pipe_id = null
 
           return wrapper

@@ -4,11 +4,11 @@ const Wrapper = require('./Wrapper.js')
 
 module.exports = class Harvest {
 
-  constructor(account_id, token, app_name) {
+  constructor(account_id, token, app_name, subdomain = 'api') {
     this.account_id = account_id
     this.token = token
     this.app_name = app_name
-    this.url = 'https://api.harvestapp.com/api/v2/'
+    this.url = `https://${subdomain}.harvestapp.com/api/v2/`
 
     this.wrappers = []
   }

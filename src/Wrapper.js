@@ -5,7 +5,7 @@ const { Client } = require('node-rest-client')
 module.exports = class Wrapper {
 
   constructor(base_url, endpoint, options = {}) {
-    this.base_url = base_url
+    this.base_url = base_url.endsWith('/') ? base_url : base_url + '/'
     this.endpoint = endpoint
 
     if (options.headers) {
@@ -114,7 +114,7 @@ module.exports = class Wrapper {
     if (!this.hasOwnProperty(name)) {
       Object.defineProperty(this, name, {
         get: () => {
-          wrapper.pipe_path = '/' + this.endpoint + '/' + this.pipe_id
+          wrapper.pipe_path = this.endpoint + '/' + this.pipe_id
           this.pipe_id = null
 
           return wrapper
@@ -130,7 +130,9 @@ module.exports = class Wrapper {
 
     Object.assign(args, this.headers)
 
-    endpoint = this.pipe_path + '/' + endpoint
+    if (this.pipe_path.length) {
+      endpoint = this.pipe_path + '/' + endpoint
+    }
 
     return new Promise((resolve, reject) => {
       this.rest_client.get(this.base_url + endpoint, args, (data, response) => {
@@ -179,7 +181,9 @@ module.exports = class Wrapper {
     Object.assign(this.headers.headers, {'Content-Type': 'application/json'})
     args = Object.assign({}, args, this.headers)
 
-    endpoint = this.pipe_path + '/' + endpoint
+    if (this.pipe_path.length) {
+      endpoint = this.pipe_path + '/' + endpoint
+    }
 
     return new Promise((resolve, reject) => {
       this.rest_client.post(this.base_url + endpoint, args, (data, response) => {
@@ -192,7 +196,9 @@ module.exports = class Wrapper {
     Object.assign(this.headers.headers, {'Content-Type': 'application/json'})
     args = Object.assign({}, args, this.headers)
 
-    endpoint = this.pipe_path + '/' + endpoint
+    if (this.pipe_path.length) {
+      endpoint = this.pipe_path + '/' + endpoint
+    }
 
     return new Promise((resolve, reject) => {
       this.rest_client.patch(this.base_url + endpoint, args, (data, response) => {
@@ -202,7 +208,9 @@ module.exports = class Wrapper {
   }
 
   async _make_delete_request(endpoint) {
-    endpoint = this.pipe_path + '/' + endpoint
+    if (this.pipe_path.length) {
+      endpoint = this.pipe_path + '/' + endpoint
+    }
 
     return new Promise((resolve, reject) => {
       this.rest_client.delete(this.base_url + endpoint, (data, response) => {

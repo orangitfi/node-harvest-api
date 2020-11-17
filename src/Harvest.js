@@ -116,9 +116,7 @@ module.exports = class Harvest {
   }
 
   get reports() {
-    let wrapper = this._getWrapper('reports')
-
-    wrapper.addPipe('team', wrapper.addPipe('time', 'time'))
+    let wrapper = this._getWrapper('reports/time/team')
 
     return wrapper
   }

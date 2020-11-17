@@ -118,33 +118,25 @@ module.exports = class Harvest {
   get time_report_team() {
     let wrapper = this._getWrapper('reports/time/team')
 
-    return () => {
-      return wrapper._make_get_request('reports/time/team')
-    }
+    return wrapper
   }
 
   get time_report_tasks() {
     let wrapper = this._getWrapper('reports/time/tasks')
 
-    return () => {
-      return wrapper._make_get_request('reports/time/tasks')
-    }
+    return wrapper
   }
 
   get time_report_projects() {
     let wrapper = this._getWrapper('reports/time/projects')
 
-    return () => {
-      return wrapper._make_get_request('reports/time/projects')
-    }
+    return wrapper
   }
 
   get time_report_clients() {
     let wrapper = this._getWrapper('reports/time/clients')
 
-    return () => {
-      return wrapper._make_get_request('reports/time/clients')
-    }
+    return wrapper
   }
 
   _getWrapper(name) {

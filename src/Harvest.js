@@ -14,7 +14,7 @@ module.exports = class Harvest {
   }
 
   get headers() {
-    return {  
+    return {
       'Harvest-Account-ID': this.account_id,
       'Authorization': 'Bearer ' + this.token,
       'User-Agent': this.app_name
@@ -108,12 +108,17 @@ module.exports = class Harvest {
 
   get time_entries() {
     let wrapper = this._getWrapper('time_entries')
-    
+
     wrapper.addMethod('stop', '${id}/stop', 'patch')
     wrapper.addMethod('restart', '${id}/restart', 'patch')
 
     return wrapper
   }
+
+  get reports() {
+    return this._getWrapper('reports')
+  }
+
 
   _getWrapper(name) {
     if (!this.wrappers[name]) {
@@ -124,5 +129,5 @@ module.exports = class Harvest {
 
     return this.wrappers[name]
   }
-  
+
 }

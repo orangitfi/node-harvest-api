@@ -119,6 +119,8 @@ module.exports = class Harvest {
     let wrapper = this._getWrapper('reports')
 
     wrapper.addMethod('team', 'time/team', 'get')
+
+    return wrapper
   }
 
 

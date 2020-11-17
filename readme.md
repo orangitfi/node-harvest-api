@@ -26,6 +26,7 @@ Node implementation for the Harvest rest API v2 using async/await.
   - [Projects](#projects)
   - [Project User Assignments](#project-user-assignments)
   - [Project Task Assignments](#project-task-assignments)
+  - [Reports](#reports)
 - [Pagination](#pagination)
 - [Full Example](#full-example)
 
@@ -463,6 +464,25 @@ harvest.projects.pipe(project_id).task_assignments.delete(1)
 ```
 
 **[API Docs](https://help.getharvest.com/api-v2/projects-api/projects/task-assignments/)**
+
+---
+
+### Reports
+
+API currently supports only getting of the following time reports
+* Clients Report
+* Projects Report
+* Tasks Report
+* Team Report 
+
+```javascript
+harvest.time_report_clients.get({ from: '20200101', to: '200131' });
+harvest.time_report_projects.get({ from: '20200101', to: '200131' });
+harvest.time_report_tasks.get({ from: '20200101', to: '200131' });
+harvest.time_report_team.get({ from: '20200101', to: '200131' });
+```
+
+**[API Docs](https://help.getharvest.com/api-v2/reports-api/reports/time-reports/)**
 
 ---
 

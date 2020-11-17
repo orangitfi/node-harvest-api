@@ -116,7 +116,7 @@ module.exports = class Harvest {
   }
 
   get reports() {
-    return this._getWrapper('reports')
+    return this._getWrapper('reports/time/team')
   }
 
 

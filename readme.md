@@ -1,3 +1,4 @@
+3 Depricated: Harvest no longer in use
 Node implementation for the Harvest rest API v2 using async/await.
 
 [More info on the Harvest Rest API](https://help.getharvest.com/api-v2/)
